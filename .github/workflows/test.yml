@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-cpp@v2
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - name: Install C++
+        run: sudo apt install g++
       - name: Make the File list
         run: find / -name *_code.md > res.txt
       - name: Check the Code
