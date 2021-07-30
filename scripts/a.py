@@ -1,2 +1,3 @@
 import sys
-sys.exit(0)
+import os
+os.system("ls -all")
