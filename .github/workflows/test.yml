@@ -23,6 +23,4 @@ jobs:
         run: find . -name *_code.md > res.txt
       - name: Check the Code
         run: python3 scripts/a.py
-      - name: test
-        run: ls -all
       
