@@ -5,7 +5,6 @@ filename = "res.txt"
 with open(filename) as file_object:
     lines=file_object.readlines()
 for line in lines:
-    print(line)
     name=line[:-5]
     num=name.rfind('/')
     content=name[:num]
@@ -18,10 +17,6 @@ for line in lines:
     indata=indata.replace('code','examples')
     outdata=outdata.replace('code','examples')
     ansdata=ansdata.replace('code','examples')
-    print(cpp)
-    print(indata)
-    print(outdata)
-    print(ansdata)
     cmd='g++ '+cpp+' -o '+name
     #判断CE
     if os.system(cmd)==0 :
