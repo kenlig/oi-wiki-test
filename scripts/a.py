@@ -5,6 +5,7 @@ filename = "res.txt"
 with open(filename) as file_object:
     lines=file_object.readlines()
 for line in lines:
+    print(line)
     name=line[1:-5]
     num=name.rfind('/')
     content=name[:num]
