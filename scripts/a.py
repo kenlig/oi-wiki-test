@@ -5,8 +5,7 @@ filename = "res.txt"
 with open(filename) as file_object:
     lines=file_object.readlines()
 for line in lines:
-    name=name[1:]
-    name=line[:-4]
+    name=line[1:-5]
     num=name.rfind('/')
     content=name[:num]
     filename=name[num:]
@@ -15,6 +14,9 @@ for line in lines:
     indata=name+'.in'
     ansdata=name+'.ans'
     outdata=name+'.out'
+    indata=indata.replace('code','examples')
+    outdata=outdata.replace('code','examples')
+    ansdata=ansdata.replace('code','examples')
     cmd='g++ '+cpp+' -o '+name
     #判断CE
     if os.system(cmd)==0 :
@@ -23,7 +25,7 @@ for line in lines:
         print(cpp+' Compiled Error')
         sys.exit(1)
     #运行程序并重定向输出
-    cmd='sudo '+content+'/.'+filename+' <'+indata+'> '+outdata
+    cmd=content+'/.'+filename+' <'+indata+'> '+outdata
     os.system(cmd)
     #判断RE
     if os.system(cmd)==0:
