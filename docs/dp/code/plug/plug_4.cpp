@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define DWN(i, b, a) for (int i = b - 1; i >= a; --i)
 typedef long long T_state;
 typedef int T_key;
 const int N = 8;
