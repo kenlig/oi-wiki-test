@@ -4,9 +4,8 @@ import json
 
 annotations = []
 
-def generate_annotations_and_exit():
-    with open('annotations.json', 'w') as outfile:
-        json.dump(annotations, outfile)
+def generate_annotations_and_exit(file, message):
+    print(f"::error file={file},line={1},col={1}::{message}")
     sys.exit(1)
 
 
@@ -32,14 +31,7 @@ for line in lines:
         print(cpp+' Successfully compiled')
     else:
         print(cpp+' Compiled Error')
-        annotations.append({
-            'file': cpp,
-            'line': 1,
-            'title': "Compiled Error",
-            'message': "",
-            'annotation_level': "failure"
-        })
-        generate_annotations_and_exit()
+        generate_annotations_and_exit(cpp, 'Compiled Error')
     # 运行程序并重定向输出
     cmd = content+'/.'+filename+' <'+indata+'> '+outdata
     os.system(cmd)
@@ -48,25 +40,11 @@ for line in lines:
         print(cpp+' Run successfully')
     else:
         print(cpp+' Runtime Error')
-        annotations.append({
-            'file': cpp,
-            'line': 1,
-            'title': "Runtime Error",
-            'message': "",
-            'annotation_level': "failure"
-        })
-        generate_annotations_and_exit()
+        generate_annotations_and_exit(cpp, 'Runtime Error')
     # 判断答案
     cmd = 'diff -b -B '+outdata+' '+ansdata
     if os.system(cmd) == 0:
         print(cpp+' Successfully passed the test')
     else:
         print(cpp + ' Wrong Answer')
-        annotations.append({
-            'file': cpp,
-            'line': 1,
-            'title': "Wrong Answer",
-            'message': "",
-            'annotation_level': "failure"
-        })
-        generate_annotations_and_exit()
+        generate_annotations_and_exit(cpp, 'Wrong Answer')
