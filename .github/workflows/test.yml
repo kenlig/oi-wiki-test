@@ -22,5 +22,10 @@ jobs:
       - name: Make the File list
         run: find . -name *.cpp > res.txt
       - name: Check the Code
-        run: python3 scripts/test.py
-      
+        run: python3 scripts/test.py      
+      - name: Annotate
+        uses: yuzutech/annotations-action@v0.1.0
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          title: 'lint'
+          input: './annotations.json'
