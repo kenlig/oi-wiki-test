@@ -1,6 +1,7 @@
 // 该代码为回溯法的 BFS 实现
 #include <cstdio>
 #include <queue>
+#include<cstring>
 using namespace std;
 int n, m, k, x, y, a, b, ans;
 int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};//四个方向 
